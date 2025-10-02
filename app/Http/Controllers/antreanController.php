@@ -7,6 +7,7 @@ use App\Models\antreans;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class antreanController extends Controller
 {
@@ -14,6 +15,8 @@ class antreanController extends Controller
     {
         // $antreanBerikutnya = antreans::where('status', 'menunggu')->whereDate('tanggal_sidang', Carbon::today())->orderBy('id', 'asc')->first();
         $antreanBerikutnya = antreans::where('status', 'menunggu')->orderBy('id', 'asc')->first();
+        
+        Log::info('Mencoba mengirim broadcast untuk antrean ID: ' . $antreanBerikutnya->id . ' di channel: antrean.' . $antreanBerikutnya->id);
 
         if ($antreanBerikutnya) {
             $antreanBerikutnya->status = 'telah di panggil';
