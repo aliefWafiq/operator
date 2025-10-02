@@ -19,6 +19,8 @@ class antreanController extends Controller
             $antreanBerikutnya->status = 'telah di panggil';
             $antreanBerikutnya->save();
 
+            broadcast(new QueueCalled($antreanBerikutnya));
+
             return response()->json($antreanBerikutnya);
         }
 
@@ -45,9 +47,6 @@ class antreanController extends Controller
         DB::transaction(function () use ($antreanSekarang, $antreanSebelumnya) {
             $antreanSekarang->status = 'menunggu';
             $antreanSekarang->save();
-
-            $antreanSebelumnya->status = 'menunggu';
-            $antreanSebelumnya->save();
         });
 
         if (!$antreanSebelumnya) {

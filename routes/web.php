@@ -3,6 +3,7 @@
 use App\Http\Controllers\antreanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\operatorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
