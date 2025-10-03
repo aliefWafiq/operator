@@ -15,16 +15,24 @@ class antreanController extends Controller
     {
         // $antreanBerikutnya = antreans::where('status', 'menunggu')->whereDate('tanggal_sidang', Carbon::today())->orderBy('id', 'asc')->first();
         $antreanBerikutnya = antreans::where('status', 'menunggu')->orderBy('id', 'asc')->first();
-        
+
         Log::info('Mencoba mengirim broadcast untuk antrean ID: ' . $antreanBerikutnya->id . ' di channel: antrean.' . $antreanBerikutnya->id);
 
         if ($antreanBerikutnya) {
-            $antreanBerikutnya->status = 'telah di panggil';
-            $antreanBerikutnya->save();
+            try {
+                $antreanBerikutnya->status = 'telah di panggil';
+                $antreanBerikutnya->save();
 
-            broadcast(new QueueCalled($antreanBerikutnya));
+                broadcast(new QueueCalled($antreanBerikutnya));
 
-            return response()->json($antreanBerikutnya);
+                return response()->json($antreanBerikutnya);
+            } catch (\Exception $e) {
+                // JIKA BROADCAST GAGAL, TANGKAP ERRORNYA DAN KIRIM SEBAGAI JSON
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Broadcast Gagal: ' . $e->getMessage(),
+                ], 500); // Kirim status 500
+            }
         }
 
         return response()->json(['message' => 'Semua antrean hari ini sudah selesai'], 404);
