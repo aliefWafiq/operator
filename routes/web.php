@@ -24,5 +24,6 @@ Route::post('/dashboard/panggil-berikutnya', [antreanController::class, 'panggil
 Route::post('/dashboard/panggil-sebelumnya', [antreanController::class, 'panggilAntreanSebelumnya']);
 Route::post('/store/operator', [operatorController::class, 'storeOperator']);
 Route::post('loginAction', [operatorController::class, 'login']);
+Route::post('/dashboard/antrean/prioritaskan/{id}', [antreanController::class, 'prioritaskan']);
 
 Route::get('actionLogout', [operatorController::class, 'actionlogout'])->name('actionLogout')->middleware('auth');

@@ -12,7 +12,10 @@ class antreanController extends Controller
 {
     public function panggilAntrean()
     {
-        $antreanBerikutnya = antreans::where('status', 'menunggu')->whereDate('tanggal_sidang', Carbon::today())->orderBy('id', 'asc')->first();
+        $antreanBerikutnya = antreans::where('status', 'menunggu')
+            ->whereDate('tanggal_sidang', today())
+            ->orderByRaw('ISNULL(prioritized_at) ASC, prioritized_at ASC, id ASC')
+            ->first();
 
         Log::info('Mencoba mengirim broadcast untuk antrean ID: ' . $antreanBerikutnya->id . ' di channel: antrean.' . $antreanBerikutnya->id);
 
@@ -62,5 +65,23 @@ class antreanController extends Controller
         }
 
         return response()->json($antreanSebelumnya);
+    }
+
+    public function prioritaskan($id)
+    {
+        $antrean = antreans::where('id', $id)
+            ->where('status', 'menunggu')
+            ->whereDate('tanggal_sidang', today())
+            ->first();
+
+        if ($antrean) {
+            if (is_null($antrean->prioritized_at)) {
+                $antrean->prioritized_at = now();
+                $antrean->save();
+            }
+            return response()->json(['message' => 'Antrean berhasil diprioritaskan.']);
+        }
+
+        return response()->json(['message' => 'Antrean tidak ditemukan atau sudah dipanggil'], 404);
     }
 }

@@ -1,7 +1,6 @@
 @extends('layout.main')
 @section('content')
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -15,10 +14,9 @@
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
 
@@ -39,17 +37,29 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header d-flex flex-column flex-lg-row align-items-center">
-                            <div class="col-12 col-sm-8 py-2">
-                                <h3 class="card-title">List Antrean Hari Ini</h3>
+                        <div class="card-header">
+                            <div class="row align-items-end mb-3">
+                                <div class="col-md-4">
+                                    <label for="filterTanggal" class="form-label">Filter Berdasarkan Tanggal Sidang</label>
+                                    <input type="date" id="filterTanggal" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <button id="resetFilter" class="btn btn-secondary">Tampilkan Semua</button>
+                                </div>
                             </div>
-                            <div class="col-12 col-lg-4">
-                                <button id="btn-kembali" class="btn btn-warning col-5">
-                                    Kembali
-                                </button>
-                                <button id="btn-panggil" class="btn btn-primary col-6 col-lg-5 ml-2">
-                                    Panggil Berikutnya
-                                </button>
+                            <hr>
+                            <div class="d-flex flex-column flex-lg-row align-items-center">
+                                <div class="col-12 col-sm-8 py-2">
+                                    <h3 class="card-title">List Antrean Hari Ini</h3>
+                                </div>
+                                <div class="col-12 col-lg-4 text-lg-right">
+                                    <button id="btn-kembali" class="btn btn-warning">
+                                        Kembali
+                                    </button>
+                                    <button id="btn-panggil" class="btn btn-primary ml-2">
+                                        Panggil Berikutnya
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body" style="overflow-x: scroll;">
@@ -58,15 +68,27 @@
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th>Nama Lengkap</th>
+                                        <th>Nomor Perkara</th>
                                         <th>Tiket Antrean</th>
+                                        <th>Tanggal Sidang</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tabel-antrean">
                                     @foreach ($data as $x)
-                                    <tr id="antrean-{{ $x->id }}">
+                                    <tr id="antrean-{{ $x->id }}" data-tanggal="{{ \Carbon\Carbon::parse($x->tanggal_sidang)->format('Y-m-d') }}">
                                         <td class="text-center py-3">{{ $loop->iteration }}</td>
                                         <td class="py-3">{{ $x->namaLengkap }}</td>
+                                        <td class="py-3">{{ $x->noPerkara }}</td>
                                         <td class="py-3">{{ $x->tiketAntrean }}</td>
+                                        <td class="py-3">{{ \Carbon\Carbon::parse($x->tanggal_sidang)->format('d F Y') }}</td>
+                                        <td>
+                                            @if($x->status === 'menunggu')
+                                            <button class="btn btn-primary col-12 btn-prioritaskan" data-id="{{ $x->id }}">
+                                                Naikkan
+                                            </button>
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -77,7 +99,6 @@
             </div>
         </div>
     </section>
-    <!-- /.content -->
 </div>
 @push('script')
 <script>
@@ -85,6 +106,13 @@
     const backButton = document.getElementById('btn-kembali');
     const displayAntrean = document.getElementById('display-antrean-sekarang');
     let barisAntreanSebelumnya = null;
+
+    const priorityButtons = document.querySelectorAll('.btn-prioritaskan');
+
+    const dateInput = document.getElementById('filterTanggal');
+    const resetButton = document.getElementById('resetFilter');
+    const tableBody = document.getElementById('tabel-antrean');
+    const allRows = tableBody.getElementsByTagName('tr');
 
     function updateTampilan(data) {
         if (!data) {
@@ -94,18 +122,13 @@
             }
             return;
         }
-
         const queueNumber = data.tiketAntrean;
         const textToSpeak = `Nomor antrian, ${queueNumber}, di mohon masuk ke ruang sidang`;
-
         displayAntrean.textContent = queueNumber;
-
         generateSound(textToSpeak);
-
         if (barisAntreanSebelumnya) {
             barisAntreanSebelumnya.classList.remove('table-success');
         }
-
         const barisAntreanSekarang = document.getElementById('antrean-' + data.id);
         if (barisAntreanSekarang) {
             barisAntreanSekarang.classList.add('table-success');
@@ -161,6 +184,47 @@
                 updateTampilan(data);
             })
             .catch(error => console.error('Error:', error));
+    });
+
+    function filterRowsByDate() {
+        const selectedDate = dateInput.value;
+
+        for (const row of allRows) {
+            const rowDate = row.getAttribute('data-tanggal');
+            if (selectedDate === '' || rowDate === selectedDate) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+
+    dateInput.addEventListener('change', filterRowsByDate);
+
+    resetButton.addEventListener('click', function() {
+        dateInput.value = '';
+        filterRowsByDate();
+    });
+
+    priorityButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const antreanId = this.getAttribute('data-id');
+
+            fetch(`/dashboard/antrean/prioritaskan/${antreanId}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    this.disabled = true;
+                    this.textContent = 'Prioritas';
+                })
+                .catch(error => console.error('Error:', error));
+        });
     });
 </script>
 @endpush
