@@ -39,14 +39,18 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header d-flex align-items-center">
-                            <h3 class="card-title col-7 col-sm-8 py-2">List Antrean Hari Ini</h3>
-                            <button id="btn-kembali" class="btn btn-warning col-lg-2 col-5">
-                                Kembali
-                            </button>
-                            <button id="btn-panggil" class="btn btn-primary col-lg-2 col-5 ml-2">
-                                Panggil Berikutnya
-                            </button>
+                        <div class="card-header d-flex flex-column flex-lg-row align-items-center">
+                            <div class="col-12 col-sm-8 py-2">
+                                <h3 class="card-title">List Antrean Hari Ini</h3>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <button id="btn-kembali" class="btn btn-warning col-5">
+                                    Kembali
+                                </button>
+                                <button id="btn-panggil" class="btn btn-primary col-6 col-lg-5 ml-2">
+                                    Panggil Berikutnya
+                                </button>
+                            </div>
                         </div>
                         <div class="card-body" style="overflow-x: scroll;">
                             <table id="example1" class="table table-bordered table-striped">
@@ -88,7 +92,7 @@
             if (barisAntreanSebelumnya) {
                 barisAntreanSebelumnya.classList.remove('table-success');
             }
-            return; 
+            return;
         }
 
         const queueNumber = data.tiketAntrean;

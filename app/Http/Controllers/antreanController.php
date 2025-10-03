@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Events\QueueCalled;
 use App\Models\antreans;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -13,8 +12,7 @@ class antreanController extends Controller
 {
     public function panggilAntrean()
     {
-        // $antreanBerikutnya = antreans::where('status', 'menunggu')->whereDate('tanggal_sidang', Carbon::today())->orderBy('id', 'asc')->first();
-        $antreanBerikutnya = antreans::where('status', 'menunggu')->orderBy('id', 'asc')->first();
+        $antreanBerikutnya = antreans::where('status', 'menunggu')->whereDate('tanggal_sidang', Carbon::today())->orderBy('id', 'asc')->first();
 
         Log::info('Mencoba mengirim broadcast untuk antrean ID: ' . $antreanBerikutnya->id . ' di channel: antrean.' . $antreanBerikutnya->id);
 
@@ -27,7 +25,6 @@ class antreanController extends Controller
 
                 return response()->json($antreanBerikutnya);
             } catch (\Exception $e) {
-                // JIKA BROADCAST GAGAL, TANGKAP ERRORNYA DAN KIRIM SEBAGAI JSON
                 return response()->json([
                     'success' => false,
                     'message' => 'Broadcast Gagal: ' . $e->getMessage(),
