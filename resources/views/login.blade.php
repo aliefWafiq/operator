@@ -41,3 +41,8 @@
 </body>
 
 </html>
+@if (session('error'))
+    <script>
+        alert('Email atau Password salah')
+    </script>
+@endif
