@@ -13,7 +13,7 @@ class operatorController extends Controller
 {
     public function dashboard()
     {
-        $data = antreans::latest()->get();
+        $data = antreans::where('statusAmbilAntrean', 'sudah ambil')->get();
         return view('dashboard', compact('data'));
     }
 

@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('antreans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('namaLengkap');
+            $table->string('nomorHp');
+            $table->string('password');
             $table->string('noPerkara');
             $table->enum('jenisPerkara', ['Gugatan', 'Permohonan']);
             $table->string('tiketAntrean');
             $table->time('jam_perkiraan');
             $table->date('tanggal_sidang');
+            $table->enum('statusAmbilAntrean', ['sudah ambil', 'belum ambil'])->default('belum ambil');
             $table->enum('status', ['menunggu', 'telah di panggil'])->default('menunggu');
             $table->timestamp('updated_at');
             $table->timestamp('created_at');

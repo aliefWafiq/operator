@@ -13,6 +13,7 @@ class antreanController extends Controller
     public function panggilAntrean()
     {
         $antreanBerikutnya = antreans::where('status', 'menunggu')
+            ->where('statusAmbilAntrean', 'sudah ambil')
             ->whereDate('tanggal_sidang', today())
             ->orderByRaw('ISNULL(prioritized_at) ASC, prioritized_at ASC, id ASC')
             ->first();
