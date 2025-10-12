@@ -21,6 +21,7 @@ Route::get('/createOperator', [operatorController::class, 'createOperator'])->na
 Route::get('/', [operatorController::class, 'loginView'])->name('login');
 
 Route::post('/dashboard/panggil-berikutnya', [antreanController::class, 'panggilAntrean']);
+Route::post('/dashboard/panggil-lagi', [antreanController::class, 'panggilLagi']);
 Route::post('/dashboard/panggil-sebelumnya', [antreanController::class, 'panggilAntreanSebelumnya']);
 Route::post('/store/operator', [operatorController::class, 'storeOperator']);
 Route::post('loginAction', [operatorController::class, 'login']);

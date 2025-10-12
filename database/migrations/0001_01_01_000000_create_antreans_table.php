@@ -22,7 +22,7 @@ return new class extends Migration
             $table->time('jam_perkiraan');
             $table->date('tanggal_sidang');
             $table->enum('statusAmbilAntrean', ['sudah ambil', 'belum ambil'])->default('belum ambil');
-            $table->enum('status', ['menunggu', 'telah di panggil'])->default('menunggu');
+            $table->enum('status', ['menunggu', 'telah dipanggil'])->default('menunggu');
             $table->timestamp('updated_at');
             $table->timestamp('created_at');
 

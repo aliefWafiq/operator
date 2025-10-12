@@ -22,7 +22,7 @@ class antreanController extends Controller
 
         if ($antreanBerikutnya) {
             try {
-                $antreanBerikutnya->status = 'telah di panggil';
+                $antreanBerikutnya->status = 'telah dipanggil';
                 $antreanBerikutnya->save();
 
                 broadcast(new QueueCalled($antreanBerikutnya));
@@ -32,16 +32,15 @@ class antreanController extends Controller
                 return response()->json([
                     'success' => false,
                     'message' => 'Broadcast Gagal: ' . $e->getMessage(),
-                ], 500); // Kirim status 500
+                ], 500);
             }
         }
 
         return response()->json(['message' => 'Semua antrean hari ini sudah selesai'], 404);
     }
 
-    public function panggilAntreanSebelumnya()
-    {
-        $antreanSekarang = antreans::where('status', 'telah di panggil')
+    public function panggilLagi() {
+        $antreanSekarang = antreans::where('status', 'telah dipanggil')
             ->whereDate('tanggal_sidang', today())
             ->orderBy('id', 'desc')
             ->first();
@@ -50,7 +49,21 @@ class antreanController extends Controller
             return response()->json(['message' => 'Tidak ada antrean yang sedang aktif'], 404);
         }
 
-        $antreanSebelumnya = antreans::where('status', 'telah di panggil')
+        return response()->json(null, 200);
+    }
+
+    public function panggilAntreanSebelumnya()
+    {
+        $antreanSekarang = antreans::where('status', 'telah dipanggil')
+            ->whereDate('tanggal_sidang', today())
+            ->orderBy('id', 'desc')
+            ->first();
+
+        if (!$antreanSekarang) {
+            return response()->json(['message' => 'Tidak ada antrean yang sedang aktif'], 404);
+        }
+
+        $antreanSebelumnya = antreans::where('status', 'telah dipanggil')
             ->whereDate('tanggal_sidang', today())
             ->where('id', '<', $antreanSekarang->id)
             ->orderBy('id', 'desc')

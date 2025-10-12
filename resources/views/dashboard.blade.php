@@ -56,6 +56,9 @@
                                     <button id="btn-kembali" class="btn btn-warning">
                                         Kembali
                                     </button>
+                                    <button id="btn-panggilLagi" class="btn btn-success ml-2">
+                                        Panggil Lagi
+                                    </button>
                                     <button id="btn-panggil" class="btn btn-primary ml-2">
                                         Panggil Berikutnya
                                     </button>
@@ -103,6 +106,7 @@
 @push('script')
 <script>
     const callButton = document.getElementById('btn-panggil');
+    const callAgainButton = document.getElementById('btn-panggilLagi')
     const backButton = document.getElementById('btn-kembali');
     const displayAntrean = document.getElementById('display-antrean-sekarang');
     let barisAntreanSebelumnya = null;
@@ -164,6 +168,27 @@
             })
             .catch(error => console.error('Error:', error));
     });
+
+    callAgainButton.addEventListener('click', function() {
+        fetch('/dashboard/panggil-lagi', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                alert('Tidak ada antrean yang sedang dipanggil.');
+                throw new Error('Tidak ada antrean aktif');
+            }
+            return response.json();
+        })
+        .then(data => {
+            updateTampilan(data);
+        })
+        .catch(error => console.log('Error: ', error));
+    })
 
     backButton.addEventListener('click', function() {
         fetch('/dashboard/panggil-sebelumnya', {
