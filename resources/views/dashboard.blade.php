@@ -59,7 +59,7 @@
                                     <button id="btn-panggilLagi" class="btn btn-success ml-2">
                                         Panggil Lagi
                                     </button>
-                                    <button id="btn-panggil" class="btn btn-primary ml-2">
+                                    <button id="btn-panggil" class="btn btn-primary ml-lg-2 mt-2 mt-lg-0">
                                         Panggil Berikutnya
                                     </button>
                                 </div>
