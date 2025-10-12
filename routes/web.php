@@ -3,6 +3,7 @@
 use App\Http\Controllers\antreanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\operatorController;
+use App\Http\Controllers\pengajuan_jam_sidangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::get('/dashboard', [operatorController::class, 'dashboard'])->name('dashbo
 Route::get('/listOperator', [operatorController::class, 'listOperator'])->name('listOperator')->middleware('auth');
 Route::get('/createOperator', [operatorController::class, 'createOperator'])->name('createOperator')->middleware('auth');
 Route::get('/', [operatorController::class, 'loginView'])->name('login');
+Route::get('/pengajuanSidang', [pengajuan_jam_sidangController::class, 'pengajuanJamSidang']);
 
 Route::post('/dashboard/panggil-berikutnya', [antreanController::class, 'panggilAntrean']);
 Route::post('/dashboard/panggil-lagi', [antreanController::class, 'panggilLagi']);
@@ -26,5 +28,8 @@ Route::post('/dashboard/panggil-sebelumnya', [antreanController::class, 'panggil
 Route::post('/store/operator', [operatorController::class, 'storeOperator']);
 Route::post('loginAction', [operatorController::class, 'login']);
 Route::post('/dashboard/antrean/prioritaskan/{id}', [antreanController::class, 'prioritaskan']);
+
+Route::put('/terimaPengajuanJam/{pengajuanJamSidangs}', [pengajuan_jam_sidangController::class, 'terimaPengajuanJam']);
+Route::put('/tolakPengajuanJam/{pengajuanJamSidangs}', [pengajuan_jam_sidangController::class, 'tolakPengajuanJam']);
 
 Route::get('actionLogout', [operatorController::class, 'actionlogout'])->name('actionLogout')->middleware('auth');

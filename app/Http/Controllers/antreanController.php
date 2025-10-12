@@ -49,7 +49,7 @@ class antreanController extends Controller
             return response()->json(['message' => 'Tidak ada antrean yang sedang aktif'], 404);
         }
 
-        return response()->json(null, 200);
+        return response()->json($antreanSekarang);
     }
 
     public function panggilAntreanSebelumnya()

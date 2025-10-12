@@ -65,6 +65,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/pengajuanSidang" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Pengajuan Sidang
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

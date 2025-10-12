@@ -23,6 +23,7 @@ class antreans extends Authenticatable
         'noPerkara',
         'jenisPerkara',
         'statusAmbilAntrean',
+        'status',
         'tiketAntrean',
         'jam_perkiraan',
         'tanggal_sidang',
