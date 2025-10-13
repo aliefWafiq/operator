@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\QueueCalled;
+use App\Events\UpdateDisplayAntrean;
 use App\Models\antreans;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +27,8 @@ class antreanController extends Controller
                 $antreanBerikutnya->save();
 
                 broadcast(new QueueCalled($antreanBerikutnya));
-
+                broadcast(new UpdateDisplayAntrean($antreanBerikutnya));
+                
                 return response()->json($antreanBerikutnya);
             } catch (\Exception $e) {
                 return response()->json([
@@ -49,6 +51,8 @@ class antreanController extends Controller
         if (!$antreanSekarang) {
             return response()->json(['message' => 'Tidak ada antrean yang sedang aktif'], 404);
         }
+
+        broadcast(new UpdateDisplayAntrean($antreanSekarang));
 
         return response()->json($antreanSekarang);
     }
@@ -79,6 +83,8 @@ class antreanController extends Controller
             $antreanSekarang->save();
 
         });
+
+        broadcast(new UpdateDisplayAntrean($antreanSebelumnya));
 
         return response()->json($antreanSebelumnya);
     }
