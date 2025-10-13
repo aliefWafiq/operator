@@ -19,16 +19,16 @@ class antreanController extends Controller
             ->orderByRaw('ISNULL(prioritized_at) ASC, prioritized_at ASC, id ASC')
             ->first();
 
-        Log::info('Mencoba mengirim broadcast untuk antrean ID: ' . $antreanBerikutnya->id . ' di channel: antrean.' . $antreanBerikutnya->id);
-
         if ($antreanBerikutnya) {
+            Log::info('Mencoba mengirim broadcast untuk antrean ID: ' . $antreanBerikutnya->id . ' di channel: antrean.' . $antreanBerikutnya->id);
+            
             try {
                 $antreanBerikutnya->status = 'telah dipanggil';
                 $antreanBerikutnya->save();
 
                 broadcast(new QueueCalled($antreanBerikutnya));
                 broadcast(new UpdateDisplayAntrean($antreanBerikutnya));
-                
+
                 return response()->json($antreanBerikutnya);
             } catch (\Exception $e) {
                 return response()->json([
@@ -81,7 +81,6 @@ class antreanController extends Controller
         DB::transaction(function () use ($antreanSekarang, $antreanSebelumnya) {
             $antreanSekarang->status = 'menunggu';
             $antreanSekarang->save();
-
         });
 
         broadcast(new UpdateDisplayAntrean($antreanSebelumnya));
