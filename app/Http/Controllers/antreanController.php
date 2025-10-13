@@ -60,38 +60,26 @@ class antreanController extends Controller
             ->orderBy('id', 'desc')
             ->first();
 
-        // Jika tidak ada antrean yang aktif, hentikan proses
         if (!$antreanSekarang) {
             return response()->json(['message' => 'Tidak ada antrean yang sedang aktif.'], 404);
         }
 
-        // 2. Cari antrean tepat sebelum antrean yang sekarang
         $antreanSebelumnya = antreans::where('status', 'telah dipanggil')
             ->whereDate('tanggal_sidang', today())
             ->where('id', '<', $antreanSekarang->id)
             ->orderBy('id', 'desc')
             ->first();
 
-        // 3. Jika tidak ada antrean sebelumnya (artinya ini antrean pertama)
         if (!$antreanSebelumnya) {
-            // Jangan lakukan apa-apa di database, cukup beri tahu frontend
             return response()->json(['message' => 'Ini adalah antrean pertama.'], 404);
         }
 
-        // 4. Jika ada antrean sebelumnya, lakukan transaksi database
         DB::transaction(function () use ($antreanSekarang, $antreanSebelumnya) {
-            // Ubah status antrean sekarang menjadi 'menunggu' lagi
             $antreanSekarang->status = 'menunggu';
             $antreanSekarang->save();
 
-            // Panggil kembali antrean sebelumnya dengan mengubah statusnya
-            // (Langkah ini opsional, tergantung kebutuhanmu. Tapi sepertinya ini yang dimaksud)
-            // Jika kamu hanya ingin "mundur" tanpa "memanggil ulang", baris ini bisa dihapus.
-            // $antreanSebelumnya->status = 'telah dipanggil';
-            // $antreanSebelumnya->save();
         });
 
-        // 5. Kirim data antrean yang sekarang aktif (yaitu antrean sebelumnya)
         return response()->json($antreanSebelumnya);
     }
 
