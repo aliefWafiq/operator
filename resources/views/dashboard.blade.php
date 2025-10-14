@@ -86,7 +86,7 @@
                                         <td class="py-3">{{ $x->tiketAntrean }}</td>
                                         <td class="py-3">{{ \Carbon\Carbon::parse($x->tanggal_sidang)->format('d F Y') }}</td>
                                         <td>
-                                            @if($x->status === 'menunggu')
+                                            @if($x->status === 'menunggu' && $x->tanggal_sidang->isToday())
                                             <button class="btn btn-primary col-12 btn-prioritaskan" data-id="{{ $x->id }}">
                                                 Naikkan
                                             </button>

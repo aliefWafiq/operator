@@ -29,6 +29,10 @@ class antreans extends Authenticatable
         'tanggal_sidang',
     ];
 
+    protected $casts = [
+        'tanggal_sidang' => 'datetime'
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
