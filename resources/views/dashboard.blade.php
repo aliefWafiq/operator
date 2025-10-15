@@ -73,6 +73,7 @@
                                         <th>Nama Lengkap</th>
                                         <th>Nomor Perkara</th>
                                         <th>Tiket Antrean</th>
+                                        <th>Jam Sidang</th>
                                         <th>Tanggal Sidang</th>
                                         <th>Action</th>
                                     </tr>
@@ -84,6 +85,7 @@
                                         <td class="py-3">{{ $x->namaLengkap }}</td>
                                         <td class="py-3">{{ $x->noPerkara }}</td>
                                         <td class="py-3">{{ $x->tiketAntrean }}</td>
+                                        <td class="py-3">{{ \Carbon\Carbon::parse($x->jam_perkiraan)->format('H i') }}</td>
                                         <td class="py-3">{{ \Carbon\Carbon::parse($x->tanggal_sidang)->format('d F Y') }}</td>
                                         <td>
                                             @if($x->status === 'menunggu' && $x->tanggal_sidang->isToday())

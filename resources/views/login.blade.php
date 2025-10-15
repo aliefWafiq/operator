@@ -25,6 +25,11 @@
         <form action="/loginAction" method="post" class="d-flex flex-column">
             @csrf
             <h1 class="mb-4">Login</h1>
+            @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                Nomor Hp atau password salah
+            </div>
+            @endif
             <div class="mb-4">
                 <label for="email" class="form-label">Email :</label>
                 <input type="email" class="form-input w-100" id="email" name="email" placeholder="Masukkan Email" required>
@@ -41,8 +46,3 @@
 </body>
 
 </html>
-@if (session('error'))
-    <script>
-        alert('Email atau Password salah')
-    </script>
-@endif
