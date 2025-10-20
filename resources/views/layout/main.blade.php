@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Operator</title>
+    <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css')}}">
+
+    <link rel="stylesheet" href="{{ asset('style/style.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini sidebar-fixed">
@@ -70,6 +73,14 @@
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Pengajuan Sidang
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/tambahPerkara" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Tambah Perkara
                                 </p>
                             </a>
                         </li>

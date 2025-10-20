@@ -21,6 +21,7 @@ Route::get('/listOperator', [operatorController::class, 'listOperator'])->name('
 Route::get('/createOperator', [operatorController::class, 'createOperator'])->name('createOperator')->middleware('auth');
 Route::get('/', [operatorController::class, 'loginView'])->name('login');
 Route::get('/pengajuanSidang', [pengajuan_jam_sidangController::class, 'pengajuanJamSidang']);
+Route::get('/tambahPerkara', [antreanController::class, 'tambahPerkara']);
 
 Route::post('/dashboard/panggil-berikutnya', [antreanController::class, 'panggilAntrean']);
 Route::post('/dashboard/panggil-lagi', [antreanController::class, 'panggilLagi']);

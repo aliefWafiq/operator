@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>List Operator</h1>
+                    <h1>Pengajuan Jam Sidang</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">List Operator</li>
+                        <li class="breadcrumb-item active">Pengajuan Jam Sidang</li>
                     </ol>
                 </div>
             </div>
