@@ -131,7 +131,7 @@
 
         const queueNumber = data.tiketAntrean;
         const namaPihak = data.namaLengkap;
-        const textToSpeak = `Nomor perkara, ${queueNumber} atas nama ${namaPihak} di mohon ke ruang sidang`;
+        const textToSpeak = `Nomor perkara, di mohon ke ruang sidang`;
         displayAntrean.textContent = nomorPerkara;
         generateSound(textToSpeak);
         if (barisAntreanSebelumnya) {
