@@ -140,11 +140,10 @@
         const queueNumber = data.tiketAntrean;
         const namaPihak = data.namaLengkap;
         const textToSpeak = `Nomor perkara, ${queueNumber} atas nama ${namaPihak} di mohon ke ruang sidang`;
-        displayAntrean.textContent = nomorPerkara;
-
-        alert(`Memanggil Nomor Perkara: ${queueNumber} atas nama ${namaPihak}`);
+        displayAntrean.textContent = queueNumber;
 
         generateSound(textToSpeak);
+        
         if (barisAntreanSebelumnya) {
             barisAntreanSebelumnya.classList.remove('table-success');
         }
