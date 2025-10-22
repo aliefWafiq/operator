@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('antreans', function (Blueprint $table) {
-            $table->string('email')->nullable()->after('namaLengkap');
+        Schema::table('perkara', function (Blueprint $table) {
+            $table->string('namaPihak')->after('id');
+            $table->enum('jenisPerkara', ['Gugatan', 'Permohonan'])->default('Gugatan')->after('noPerkara');
         });
     }
 
@@ -21,8 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('antreans', function (Blueprint $table) {
-            
-        });
+        //
     }
 };

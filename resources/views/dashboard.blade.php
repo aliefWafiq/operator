@@ -128,9 +128,10 @@
             }
             return;
         }
-        // const queueNumber = data.tiketAntrean;
-        const nomorPerkara = data.noPerkara;
-        const textToSpeak = `Nomor perkara, ${nomorPerkara}, di mohon masuk ke ruang sidang`;
+
+        const queueNumber = data.tiketAntrean;
+        const namaPihak = data.namaLengkap;
+        const textToSpeak = `Nomor perkara, ${queueNumber} atas nama ${namaPihak} di mohon ke ruang sidang`;
         displayAntrean.textContent = nomorPerkara;
         generateSound(textToSpeak);
         if (barisAntreanSebelumnya) {

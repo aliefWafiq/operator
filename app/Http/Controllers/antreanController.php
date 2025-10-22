@@ -102,8 +102,4 @@ class antreanController extends Controller {
 
         return response()->json(['message' => 'Antrean tidak ditemukan atau sudah dipanggil'], 404);
     }
-
-    public function tambahPerkara() {
-        return view('createPerkara');
-    }
 }

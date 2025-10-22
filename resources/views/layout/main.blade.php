@@ -77,6 +77,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/listPerkara" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    List Perkara
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/tambahPerkara" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
