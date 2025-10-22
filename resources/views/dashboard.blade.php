@@ -120,6 +120,14 @@
     const tableBody = document.getElementById('tabel-antrean');
     const allRows = tableBody.getElementsByTagName('tr');
 
+    function generateSound(text) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'id-ID';
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+    }
+
     function updateTampilan(data) {
         if (!data) {
             displayAntrean.textContent = '---';
@@ -131,8 +139,11 @@
 
         const queueNumber = data.tiketAntrean;
         const namaPihak = data.namaLengkap;
-        const textToSpeak = `Nomor perkara, di mohon ke ruang sidang`;
+        const textToSpeak = `Nomor perkara, ${queueNumber} atas nama ${namaPihak} di mohon ke ruang sidang`;
         displayAntrean.textContent = nomorPerkara;
+
+        alert(`Memanggil Nomor Perkara: ${queueNumber} atas nama ${namaPihak}`);
+
         generateSound(textToSpeak);
         if (barisAntreanSebelumnya) {
             barisAntreanSebelumnya.classList.remove('table-success');
@@ -142,14 +153,6 @@
             barisAntreanSekarang.classList.add('table-success');
             barisAntreanSebelumnya = barisAntreanSekarang;
         }
-    }
-
-    function generateSound(text) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'id-ID';
-        utterance.rate = 0.9;
-        window.speechSynthesis.speak(utterance);
     }
 
     callButton.addEventListener('click', function() {
@@ -175,23 +178,23 @@
 
     callAgainButton.addEventListener('click', function() {
         fetch('/dashboard/panggil-lagi', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                alert('Tidak ada antrean yang sedang dipanggil.');
-                throw new Error('Tidak ada antrean aktif');
-            }
-            return response.json();
-        })
-        .then(data => {
-            updateTampilan(data);
-        })
-        .catch(error => console.log('Error: ', error));
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    alert('Tidak ada antrean yang sedang dipanggil.');
+                    throw new Error('Tidak ada antrean aktif');
+                }
+                return response.json();
+            })
+            .then(data => {
+                updateTampilan(data);
+            })
+            .catch(error => console.log('Error: ', error));
     })
 
     backButton.addEventListener('click', function() {
