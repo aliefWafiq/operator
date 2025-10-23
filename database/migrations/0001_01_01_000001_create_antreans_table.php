@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('antreans', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('id_perkara')->constrained('perkara');
             $table->string('namaLengkap');
+            $table->string('email')->nullable();
             $table->string('nomorHp');
             $table->string('password');
             $table->string('noPerkara');
@@ -23,6 +25,7 @@ return new class extends Migration
             $table->date('tanggal_sidang');
             $table->enum('statusAmbilAntrean', ['sudah ambil', 'belum ambil'])->default('belum ambil');
             $table->enum('status', ['menunggu', 'telah dipanggil'])->default('menunggu');
+            $table->timestamp('prioritized_at')->nullable();
             $table->timestamp('updated_at');
             $table->timestamp('created_at');
 

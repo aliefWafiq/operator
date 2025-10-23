@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('perkara', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('namaPihak');
             $table->date('tanggal_sidang');
             $table->string('noPerkara');
+            $table->enum('jenisPerkara', ['Gugatan', 'Permohonan'])->default('Gugatan');
             $table->enum('sidang_Keliling', ['YA', 'TIDAK'])->default('TIDAK');
             $table->string('ruangan_sidang');
             $table->string('agenda');

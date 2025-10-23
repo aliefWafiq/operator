@@ -12,7 +12,6 @@ class perkara extends Model
     protected $table = 'perkara';
 
     protected $fillable = [
-        'id_antreans',
         'tanggal_sidang',
         'noPerkara',
         'sidang_Keliling',
