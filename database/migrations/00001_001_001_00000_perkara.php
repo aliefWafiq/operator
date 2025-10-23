@@ -23,6 +23,7 @@ return new class extends Migration
         //     $table->timestamp('updated_at');
         //     $table->timestamp('created_at');
         // });
+        Schema::dropIfExists('perkara');
     }
 
     /**
@@ -30,6 +31,5 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perkara');
     }
 };
