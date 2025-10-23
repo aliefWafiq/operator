@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('operators', function (Blueprint $table) {
+        Schema::table('operators', function (Blueprint $table) {
             $table->string('password', 255)->change();
         });
     }
