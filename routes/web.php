@@ -5,20 +5,9 @@ use App\Http\Controllers\perkaraController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\operatorController;
 use App\Http\Controllers\pengajuan_jam_sidangController;
-use Illuminate\Support\Facades\Artisan;
 use App\Models\operators;
 
 // GET Routes
-
-Route::get('/run-my-secret-seed', function () {
-    try {
-        // Ini sama seperti menjalankan 'php artisan db:seed'
-        Artisan::call('db:seed');
-        return '<h2>BERHASIL!</h2> Database seeder telah dijalankan.';
-    } catch (\Exception $e) {
-        return '<h2>GAGAL!</h2> ' . $e->getMessage();
-    }
-});
 
 Route::get('/run-direct-logic', function () {
     echo "<h1>Mencoba eksekusi logika seeder secara langsung...</h1>";
