@@ -5,9 +5,19 @@ use App\Http\Controllers\perkaraController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\operatorController;
 use App\Http\Controllers\pengajuan_jam_sidangController;
-
+use Illuminate\Support\Facades\Artisan;
 
 // GET Routes
+
+Route::get('/run-my-secret-seed', function () {
+    try {
+        // Ini sama seperti menjalankan 'php artisan db:seed'
+        Artisan::call('db:seed');
+        return '<h2>BERHASIL!</h2> Database seeder telah dijalankan.';
+    } catch (\Exception $e) {
+        return '<h2>GAGAL!</h2> ' . $e->getMessage();
+    }
+});
 
 Route::get('/', [operatorController::class, 'loginView'])->name('login');
 
@@ -34,4 +44,3 @@ Route::post('/dashboard/antrean/prioritaskan/{id}', [antreanController::class, '
 
 Route::put('/terimaPengajuanJam/{pengajuanJamSidangs}', [pengajuan_jam_sidangController::class, 'terimaPengajuanJam']);
 Route::put('/tolakPengajuanJam/{pengajuanJamSidangs}', [pengajuan_jam_sidangController::class, 'tolakPengajuanJam']);
-
