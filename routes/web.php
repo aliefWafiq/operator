@@ -24,13 +24,12 @@ Route::get('/run-direct-logic', function () {
     echo "<h1>Mencoba eksekusi logika seeder secara langsung...</h1>";
 
     try {
-        // Ini adalah kode DARI SEEDER, dijalankan langsung di sini
         $operator = operators::updateOrCreate(
             [
-                'email' => 'admin@gmail.com' // Kunci pencarian
+                'email' => 'tes@gmail.com'
             ],
             [
-                'namaOperator' => 'Operator Admin (Direct)', // Data baru
+                'namaOperator' => 'tes',
                 'password' => '$2y$12$TTkCRi1q.ez5WGPth7gsp.58EmgrVEh7xY6cc.c6JyDqmwnpzqAMK'
             ]
         );
@@ -38,7 +37,6 @@ Route::get('/run-direct-logic', function () {
         echo "<h2>BERHASIL EKSEKUSI LANGSUNG!</h2>";
         echo "<p>Data yang baru saja di-update atau dibuat:</p>";
 
-        // Kita tampilkan datanya langsung
         echo "<pre>";
         print_r($operator->toArray());
         echo "</pre>";
