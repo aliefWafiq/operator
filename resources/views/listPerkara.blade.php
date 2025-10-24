@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>List Antrean</h1>
+                    <h1>List Perkara</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dahsboard</a></li>
-                        <li class="breadcrumb-item active">List Antrean</li>
+                        <li class="breadcrumb-item active">List Perkara</li>
                     </ol>
                 </div>
             </div>
@@ -41,6 +41,7 @@
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th>Nama Pihak</th>
+                                        <th>Nomor Perkara</th>
                                         <th>Jenis Perkara</th>
                                         <th>Tanggal Sidang</th>
                                         <th>Agenda</th>
@@ -53,6 +54,7 @@
                                     <tr id="antrean-{{ $x->id }}" data-tanggal="{{ \Carbon\Carbon::parse($x->tanggal_sidang)->format('Y-m-d') }}">
                                         <td class="text-center py-3">{{ $loop->iteration }}</td>
                                         <td class="py-3">{{ $x->namaPihak }}</td>
+                                        <td class="py-3">{{ $x->noPerkara }}</td>
                                         <td class="py-3">{{ $x->jenisPerkara }}</td>
                                         <td class="py-3">{{ \Carbon\Carbon::parse($x->tanggal_sidang)->format('d F Y') }}</td>
                                         <td class="py-3">{{ $x->agenda }}</td>

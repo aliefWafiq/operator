@@ -25,14 +25,9 @@ Route::get('/run-direct-logic', function () {
 
         echo "<h2>BERHASIL EKSEKUSI LANGSUNG!</h2>";
         echo "<p>Data yang baru saja di-update atau dibuat:</p>";
-
-        echo "<pre>";
-        print_r($operator->toArray());
-        echo "</pre>";
     } catch (\Exception $e) {
         echo "<h2>GAGAL SAAT EKSEKUSI LANGSUNG!</h2>";
         echo "<p>Ini adalah error yang sebenarnya:</p>";
-        echo "<pre>" . $e->getMessage() . "</pre>";
     }
 });
 
@@ -56,6 +51,7 @@ Route::post('/dashboard/panggil-sebelumnya', [antreanController::class, 'panggil
 Route::post('/store/operator', [operatorController::class, 'storeOperator']);
 Route::post('loginAction', [operatorController::class, 'login']);
 Route::post('/dashboard/antrean/prioritaskan/{id}', [antreanController::class, 'prioritaskan']);
+Route::post('/action/createPerkara', [perkaraController::class, 'createPerkara']);
 
 // PUT Routes
 

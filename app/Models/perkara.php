@@ -12,9 +12,11 @@ class perkara extends Model
     protected $table = 'perkara';
 
     protected $fillable = [
+        'namaPihak',
         'tanggal_sidang',
         'noPerkara',
         'sidang_Keliling',
+        'jenisPerkara',
         'ruangan_sidang',
         'agenda',
     ];

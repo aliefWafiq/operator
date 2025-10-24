@@ -137,10 +137,10 @@
             return;
         }
 
-        const queueNumber = data.tiketAntrean;
+        const nomorPerkara = data.noPerkara;
         const namaPihak = data.namaLengkap;
-        const textToSpeak = `Nomor perkara, ${queueNumber} atas nama ${namaPihak} di mohon ke ruang sidang`;
-        displayAntrean.textContent = queueNumber;
+        const textToSpeak = `Nomor perkara, ${nomorPerkara} atas nama ${namaPihak} di mohon ke ruang sidang`;
+        displayAntrean.textContent = nomorPerkara;
 
         generateSound(textToSpeak);
         

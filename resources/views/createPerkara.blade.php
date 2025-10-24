@@ -26,34 +26,41 @@
                 <div class="col-md-12">
                     <!-- jquery validation -->
                     <div class="card card-primary">
-                        <form action="" method="post" id="quickForm" enctype="multipart/form-data" id="form">
+                        <form action="/action/createPerkara" method="post" id="quickForm" enctype="multipart/form-data" id="form">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label class="mt-3" for="namaLengkap">Nama Lengkap :</label>
-                                    <input class="form-control" type="text" name="namaLengkap" id="namaLengkap">
+                                    <label class="mt-3" for="namaPihak">Nama Pihak :</label>
+                                    <input class="form-control" type="text" name="namaPihak" id="namaPihak">
 
-                                    <label class="mt-3" for="email">Email :</label>
-                                    <input class="form-control" type="email" name="email" id="email">
+                                    <label class="mt-3" for="tanggal_sidang">Tanggal Sidang :</label>
+                                    <input class="form-control" type="date" name="tanggal_sidang" id="tanggal_sidang">
 
-                                    <label class="mt-3" for="nomorHp">Nomor Hp :</label>
-                                    <input class="form-control" type="nomorHp" name="nomorHp" id="nomorHp">
+                                    <label class="mt-3" for="noPerkara">Nomor Perkara :</label>
+                                    <input class="form-control" type="text" name="noPerkara" id="noPerkara">
 
-                                    <label class="mt-3" for="password">Password :</label>
-                                    <input class="form-control" type="password" name="password" id="password">
-
-                                    <label class="mt-3" for="nomorPerkara">Nomor Perkara :</label>
-                                    <input class="form-control" type="text" name="nomorPerkara" id="nomorPerkara">
-
-                                    <label for="inputState" class="mt-3">Jenis Perkara</label>
-                                    <select id="inputState" name="jenisPerkara" class="form-input w-100">
+                                    <label for="jenisPerkara" class="mt-3">Jenis Perkara</label>
+                                    <select id="jenisPerkara" name="jenisPerkara" class="form-input w-100">
                                         <option selected>Pilih Jenis Perkara</option>
                                         <option value="Gugatan">Gugatan</option>
                                         <option value="Permohonan">Permohonan</option>
                                     </select>
 
+                                    <label for="sidang_Keliling" class="mt-3">Sidang Keliling</label>
+                                    <select id="sidang_Keliling" name="sidang_Keliling" class="form-input w-100">
+                                        <option selected>Pilih Sidang Keliling</option>
+                                        <option value="YA">YA</option>
+                                        <option value="TIDAK">TIDAK</option>
+                                    </select>
+
+                                    <label class="mt-3" for="ruangan_sidang">Ruangan Sidang :</label>
+                                    <input class="form-control" type="text" name="ruangan_sidang" id="ruangan_sidang">
+
+                                    <label class="mt-3" for="agenda">Agenda :</label>
+                                    <textarea class="form-control" type="text" name="agenda" id="agenda"></textarea>
+
                                     <div class="my-3">
-                                        <button type="submit" class="btn btn-primary" disabled id="create">Submit</button>
+                                        <button type="submit" class="btn btn-primary" id="create">Submit</button>
                                     </div>
                                 </div>
                             </div>
