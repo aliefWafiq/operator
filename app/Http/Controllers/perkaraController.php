@@ -14,7 +14,7 @@ class perkaraController extends Controller
 
     public function listPerkara()
     {
-        $data = perkara::latest()->get();
+        $data = perkara::get();
         return view('listPerkara', compact('data'));
     }
 

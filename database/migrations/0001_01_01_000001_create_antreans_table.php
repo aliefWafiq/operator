@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('id_perkara')->constrained('perkara');
             $table->string('namaLengkap');
             $table->string('email')->nullable();
-            $table->string('nomorHp');
-            $table->string('password');
+            $table->string('nomorHp')->nullable();
+            $table->string('password')->nullable();
             $table->string('noPerkara');
             $table->enum('jenisPerkara', ['Gugatan', 'Permohonan']);
             $table->string('tiketAntrean');
