@@ -20,18 +20,22 @@ class perkaraController extends Controller
 
     public function createperkara(Request $request)
     {
-        $validatedData = $request->validate([
-            'namaPihak' => 'required',
-            'tanggal_sidang' => 'required',
-            'noPerkara' => 'required',
-            'jenisPerkara' => 'required',
-            'sidang_Keliling' => 'required',
-            'ruangan_sidang' => 'required',
-            'agenda' => 'required',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'namaPihak' => 'required',
+                'tanggal_sidang' => 'required',
+                'noPerkara' => 'required',
+                'jenisPerkara' => 'required',
+                'sidang_Keliling' => 'required',
+                'ruangan_sidang' => 'required',
+                'agenda' => 'required',
+            ]);
 
-        perkara::create($validatedData);
+            perkara::create($validatedData);
 
-        return redirect('/listPerkara');
+            return redirect('/listPerkara');
+        } catch (\Throwable $th) {
+            return redirect('/tambahPerkara')->with('error', 'Terjadi kesalahan saat menambahkan perkara, Silakan coba lagi.');
+        }
     }
 }

@@ -31,33 +31,33 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="mt-3" for="namaPihak">Nama Pihak :</label>
-                                    <input class="form-control" type="text" name="namaPihak" id="namaPihak">
+                                    <input class="form-control" required type="text" name="namaPihak" id="namaPihak">
 
                                     <label class="mt-3" for="tanggal_sidang">Tanggal Sidang :</label>
-                                    <input class="form-control" type="date" name="tanggal_sidang" id="tanggal_sidang">
+                                    <input class="form-control" required type="date" name="tanggal_sidang" id="tanggal_sidang">
 
                                     <label class="mt-3" for="noPerkara">Nomor Perkara :</label>
-                                    <input class="form-control" type="text" name="noPerkara" id="noPerkara">
+                                    <input class="form-control" required type="text" name="noPerkara" id="noPerkara">
 
                                     <label for="jenisPerkara" class="mt-3">Jenis Perkara</label>
-                                    <select id="jenisPerkara" name="jenisPerkara" class="form-input w-100">
-                                        <option selected>Pilih Jenis Perkara</option>
+                                    <select required id="jenisPerkara" name="jenisPerkara" class="form-input w-100">
+                                        <option selected disabled>Pilih Jenis Perkara</option>
                                         <option value="Gugatan">Gugatan</option>
                                         <option value="Permohonan">Permohonan</option>
                                     </select>
 
                                     <label for="sidang_Keliling" class="mt-3">Sidang Keliling</label>
-                                    <select id="sidang_Keliling" name="sidang_Keliling" class="form-input w-100">
-                                        <option selected>Pilih Sidang Keliling</option>
+                                    <select required id="sidang_Keliling" name="sidang_Keliling" class="form-input w-100">
+                                        <option selected disabled>Pilih Sidang Keliling</option>
                                         <option value="YA">YA</option>
                                         <option value="TIDAK">TIDAK</option>
                                     </select>
 
                                     <label class="mt-3" for="ruangan_sidang">Ruangan Sidang :</label>
-                                    <input class="form-control" type="text" name="ruangan_sidang" id="ruangan_sidang">
+                                    <input class="form-control" required type="text" name="ruangan_sidang" id="ruangan_sidang">
 
                                     <label class="mt-3" for="agenda">Agenda :</label>
-                                    <textarea class="form-control" type="text" name="agenda" id="agenda"></textarea>
+                                    <textarea class="form-control" required type="text" name="agenda" id="agenda"></textarea>
 
                                     <div class="my-3">
                                         <button type="submit" class="btn btn-primary" id="create">Submit</button>
@@ -75,3 +75,10 @@
     <!-- /.content -->
 </div>
 @endsection
+@push('script')
+@if (session('error'))
+<script>
+    alert("{{ session('error') }}");
+</script>
+@endif
+@endpush
