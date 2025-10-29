@@ -139,7 +139,7 @@
 
         const nomorPerkara = data.noPerkara;
         const namaPihak = data.namaLengkap;
-        const textToSpeak = `Nomor perkara, ${nomorPerkara} atas nama ${namaPihak} di mohon ke ruang sidang`;
+        const textToSpeak = `Nomor perkara, ${nomorPerkara} dengan jenis perkara ${jenisPerkara} atas nama ${namaPihak} di mohon ke ruang sidang`;
         displayAntrean.textContent = nomorPerkara;
 
         generateSound(textToSpeak);

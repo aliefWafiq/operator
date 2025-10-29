@@ -33,6 +33,12 @@
                                     <label class="mt-3" for="namaPihak">Nama Pihak :</label>
                                     <input class="form-control" required type="text" name="namaPihak" id="namaPihak">
 
+                                    <label for="tampilkan_nama" class="mt-3">Tampilkan Nama</label>
+                                    <select required id="tampilkan_nama" name="tampilkan_nama" class="form-input w-100">
+                                        <option value="Tampilkan">Tampilkan</option>
+                                        <option value="Tidak tampilkan">Tidak tampilkan</option>
+                                    </select>
+
                                     <label class="mt-3" for="tanggal_sidang">Tanggal Sidang :</label>
                                     <input class="form-control" required type="date" name="tanggal_sidang" id="tanggal_sidang">
 

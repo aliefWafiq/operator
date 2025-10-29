@@ -13,6 +13,7 @@ class perkara extends Model
 
     protected $fillable = [
         'namaPihak',
+        'tampilkan_nama',
         'tanggal_sidang',
         'noPerkara',
         'sidang_Keliling',

@@ -23,6 +23,7 @@ class perkaraController extends Controller
         try {
             $validatedData = $request->validate([
                 'namaPihak' => 'required',
+                'tampilkan_nama' => 'required',
                 'tanggal_sidang' => 'required',
                 'noPerkara' => 'required',
                 'jenisPerkara' => 'required',
