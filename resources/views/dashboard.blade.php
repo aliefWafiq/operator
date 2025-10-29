@@ -139,6 +139,7 @@
 
         const nomorPerkara = data.noPerkara;
         const namaPihak = data.namaLengkap;
+        const jenisPerkara = data.jenisPerkara;
         const textToSpeak = `Nomor perkara, ${nomorPerkara} dengan jenis perkara ${jenisPerkara} atas nama ${namaPihak} di mohon ke ruang sidang`;
         displayAntrean.textContent = nomorPerkara;
 
