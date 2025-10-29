@@ -9,27 +9,27 @@ use App\Models\operators;
 
 // GET Routes
 
-Route::get('/run-direct-logic', function () {
-    echo "<h1>Mencoba eksekusi logika seeder secara langsung...</h1>";
+// Route::get('/run-direct-logic', function () {
+//     echo "<h1>Mencoba eksekusi logika seeder secara langsung...</h1>";
 
-    try {
-        $operator = operators::updateOrCreate(
-            [
-                'email' => 'tes@gmail.com'
-            ],
-            [
-                'namaOperator' => 'tes',
-                'password' => '$2y$12$TTkCRi1q.ez5WGPth7gsp.58EmgrVEh7xY6cc.c6JyDqmwnpzqAMK'
-            ]
-        );
+//     try {
+//         $operator = operators::updateOrCreate(
+//             [
+//                 'email' => 'tes@gmail.com'
+//             ],
+//             [
+//                 'namaOperator' => 'tes',
+//                 'password' => '$2y$12$TTkCRi1q.ez5WGPth7gsp.58EmgrVEh7xY6cc.c6JyDqmwnpzqAMK'
+//             ]
+//         );
 
-        echo "<h2>BERHASIL EKSEKUSI LANGSUNG!</h2>";
-        echo "<p>Data yang baru saja di-update atau dibuat:</p>";
-    } catch (\Exception $e) {
-        echo "<h2>GAGAL SAAT EKSEKUSI LANGSUNG!</h2>";
-        echo "<p>Ini adalah error yang sebenarnya:</p>";
-    }
-});
+//         echo "<h2>BERHASIL EKSEKUSI LANGSUNG!</h2>";
+//         echo "<p>Data yang baru saja di-update atau dibuat:</p>";
+//     } catch (\Exception $e) {
+//         echo "<h2>GAGAL SAAT EKSEKUSI LANGSUNG!</h2>";
+//         echo "<p>Ini adalah error yang sebenarnya:</p>";
+//     }
+// });
 
 Route::get('/', [operatorController::class, 'loginView'])->name('login');
 
