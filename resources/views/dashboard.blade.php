@@ -70,7 +70,6 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th>Nama Lengkap</th>
                                         <th>Nomor Perkara</th>
                                         <th>Tiket Antrean</th>
                                         <th>Jam Sidang</th>
@@ -82,7 +81,6 @@
                                     @foreach ($data as $x)
                                     <tr id="antrean-{{ $x->id }}" data-tanggal="{{ \Carbon\Carbon::parse($x->tanggal_sidang)->format('Y-m-d') }}">
                                         <td class="text-center py-3">{{ $loop->iteration }}</td>
-                                        <td class="py-3">{{ $x->namaLengkap }}</td>
                                         <td class="py-3">{{ $x->noPerkara }}</td>
                                         <td class="py-3">{{ $x->tiketAntrean }}</td>
                                         <td class="py-3">{{ \Carbon\Carbon::parse($x->jam_perkiraan)->format('H i') }}</td>
@@ -139,8 +137,10 @@
 
         const nomorPerkara = data.noPerkara;
         const namaPihak = data.namaLengkap;
+        const nomorAntrian = data.tiketAntrean;
         const jenisPerkara = data.jenisPerkara;
-        const textToSpeak = `Nomor perkara, ${nomorPerkara} dengan jenis perkara ${jenisPerkara} atas nama ${namaPihak} di mohon ke ruang sidang`;
+        const textToSpeak = `Nomor antrian ${nomorAntrian}, perkara ${jenisPerkara} nomor ${nomorPerkara} atas nama ${namaPihak}, diharapkan
+        segera menuju ruang sidang.`;
         displayAntrean.textContent = nomorPerkara;
 
         generateSound(textToSpeak);
