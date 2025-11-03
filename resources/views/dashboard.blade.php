@@ -139,7 +139,7 @@
         const namaPihak = data.namaLengkap;
         const nomorAntrian = data.tiketAntrean;
         const jenisPerkara = data.jenisPerkara;
-        const textToSpeak = `Nomor antrian ${nomorAntrian}, perkara ${jenisPerkara} nomor ${nomorPerkara} atas nama ${namaPihak}, diharapkan
+        const textToSpeak = `Nomor antrian ${nomorAntrian}, perkara ${jenisPerkara} nomor ${nomorPerkara}}, diharapkan
         segera menuju ruang sidang.`;
         displayAntrean.textContent = nomorPerkara;
 
