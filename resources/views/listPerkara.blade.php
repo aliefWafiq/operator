@@ -40,7 +40,6 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th>Nama Pihak</th>
                                         <th>Nomor Perkara</th>
                                         <th>Jenis Perkara</th>
                                         <th>Tanggal Sidang</th>
@@ -53,7 +52,6 @@
                                     @foreach ($data as $x)
                                     <tr id="antrean-{{ $x->id }}" data-tanggal="{{ \Carbon\Carbon::parse($x->tanggal_sidang)->format('Y-m-d') }}">
                                         <td class="text-center py-3">{{ $loop->iteration }}</td>
-                                        <td class="py-3">{{ $x->namaPihak }}</td>
                                         <td class="py-3">{{ $x->noPerkara }}</td>
                                         <td class="py-3">{{ $x->jenisPerkara }}</td>
                                         <td class="py-3">{{ \Carbon\Carbon::parse($x->tanggal_sidang)->format('d F Y') }}</td>
