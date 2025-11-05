@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('jenisPerkara', ['Gugatan', 'Permohonan'])->default('Gugatan');
             $table->enum('sidang_Keliling', ['YA', 'TIDAK'])->default('TIDAK');
             $table->string('ruangan_sidang');
+            // $table->enum('ruangan_sidang', ['Ruang Sidang 1 Kartika', 'Ruang Sidang 2 Cakra', 'Ruang Sidang 3 Candra', 'Ruang Sidang Keliling'])->default('Ruang Sidang 1 Kartika');
             $table->string('agenda');
             $table->timestamp('updated_at');
             $table->timestamp('created_at');

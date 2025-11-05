@@ -36,7 +36,7 @@
                             <hr>
                         </div>
                         <div class="card-body" style="overflow-x: scroll;">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
@@ -46,6 +46,7 @@
                                         <th>Agenda</th>
                                         <th>Sidang Keliling</th>
                                         <th>Ruang Sidang</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tabel-perkara">
@@ -58,6 +59,10 @@
                                         <td class="py-3">{{ $x->agenda }}</td>
                                         <td class="py-3">{{ $x->sidang_Keliling }}</td>
                                         <td class="py-3">{{ $x->ruangan_sidang }}</td>
+                                        <td class="d-flex" style="gap: 10px;">
+                                            <a href="/editPerkara/{{ $x->id }}" class="btn btn-warning">Edit</a>
+                                            <a href="/deletePerkara/{{ $x->id }}" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');" class="btn btn-danger">Hapus</a>      
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
