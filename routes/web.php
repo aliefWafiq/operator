@@ -5,27 +5,6 @@ use App\Http\Controllers\perkaraController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\operatorController;
 use App\Http\Controllers\pengajuan_jam_sidangController;
-use App\Models\operators;
-
-// GET Routes
-
-Route::get('/run-direct-logic', function () {
-    try {
-        $operator = operators::updateOrCreate(
-            [
-                'email' => 'tes@gmail.com'
-            ],
-            [
-                'namaOperator' => 'tes',
-                'password' => '$2y$12$TTkCRi1q.ez5WGPth7gsp.58EmgrVEh7xY6cc.c6JyDqmwnpzqAMK'
-            ]
-        );
-
-        echo "<h2>BERHASIL EKSEKUSI LANGSUNG!</h2>";
-    } catch (\Exception $e) {
-        echo "<h2>GAGAL SAAT EKSEKUSI LANGSUNG!</h2>";
-    }
-});
 
 Route::get('/', [operatorController::class, 'loginView'])->name('login');
 
