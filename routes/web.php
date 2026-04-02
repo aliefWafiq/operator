@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\operatorController;
 use App\Http\Controllers\pengajuan_jam_sidangController;
 
-Route::get('/setup-operator', function () {
-    \App\Models\operators::create([
-        'namaOperator' => 'Admin',
-        'email' => 'admin@gmail.com', // Gunakan email karena login kamu pakai email
-        'password' => \Illuminate\Support\Facades\Hash::make('admin123'), 
-    ]);
+// Route::get('/setup-operator', function () {
+//     \App\Models\operators::create([
+//         'namaOperator' => 'Admin',
+//         'email' => 'admin@gmail.com', // Gunakan email karena login kamu pakai email
+//         'password' => \Illuminate\Support\Facades\Hash::make('admin123'), 
+//     ]);
     
-    return "Data operator berhasil dibuat! Silakan login dengan admin@gmail.com";
-});
+//     return "Data operator berhasil dibuat! Silakan login dengan admin@gmail.com";
+// });
 
 Route::get('/', [operatorController::class, 'loginView'])->name('login');
 
