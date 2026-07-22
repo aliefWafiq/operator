@@ -27,7 +27,7 @@
                         <!-- /.card-header -->
                         <div class="card-header">
                             <h3 class="card-title col-7 col-sm-10 py-2">List Operator</h3>
-                            <a href="/createOperator" class="btn btn-success col-lg-2 col-5 fileinput-button">
+                            <a href="/pengajuanSidang" class="btn btn-success col-lg-2 col-5 fileinput-button">
                                 <i class="fas fa-plus"></i>
                                 <span>Create</span>
                             </a>
